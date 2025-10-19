@@ -16,8 +16,6 @@ jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        run: echo ${{env.DEPLOY}}
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
