@@ -10,12 +10,14 @@ on:
     types: [opened, synchronize]
 
 env:
-  WILL_SKIP: ${{github.event_name != 'push' || contains(github.event.commits.*.message,'#skip')}}
+  WILL_SKIP: ${{github.event_name != 'push' || contains(join(github.event.commits.*.message),'#skip')}}
 
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
     steps:
+      - name: Test
+        run: echo ${{env.WILL_SKIP}}
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
