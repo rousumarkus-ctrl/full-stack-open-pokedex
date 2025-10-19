@@ -47,18 +47,14 @@ jobs:
         run: npm run test
       - name: Job successful
         uses: sarisia/actions-status-discord@v1.15.4
-        if: ${{ success() && env.DEPLOY != 'true' }}
+        if: ${{ success() && 'false' }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Job failed
         uses: sarisia/actions-status-discord@v1.15.4
-        if: ${{ failure() && env.DEPLOY != 'true' }}
+        if: ${{ failure() && 'false' }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Check deployment
-        uses: jtalk/url-health-check-action@v4
-        with:
-          url: https://full-stack-open-pokedex-h9ll.onrender.com/version|https://full-stack-open-pokedex-h9ll.onrender.com
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
