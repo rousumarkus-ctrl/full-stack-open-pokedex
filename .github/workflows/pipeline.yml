@@ -47,12 +47,12 @@ jobs:
         run: npm run test
       - name: Job successful
         uses: sarisia/actions-status-discord@v1.15.4
-        if: ${{ success() && 'false' }}
+        if: ${{ success() }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Job failed
         uses: sarisia/actions-status-discord@v1.15.4
-        if: ${{ failure() && 'false' }}
+        if: ${{ failure() }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
