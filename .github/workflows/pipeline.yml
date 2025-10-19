@@ -46,15 +46,15 @@ jobs:
       - name: Test
         run: npm run test
       - name: Job successful
-        uses: rjstone/discord-webhook-notify@v2.2.1
+        uses: sarisia/actions-status-discord@v1.15.4
         if: ${{ success() }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Job failed
-        uses: rjstone/discord-webhook-notify@v2.2.1
+        uses: sarisia/actions-status-discord@v1.15.4
         if: ${{ failure() }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
