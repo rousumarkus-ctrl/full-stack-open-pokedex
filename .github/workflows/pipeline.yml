@@ -10,7 +10,7 @@ on:
     types: [opened, synchronize]
 
 env:
-  DEPLOY: ${{github.event_name != 'push' || contains(join(github.event.commits.*.message),'#skip')}}
+  DEPLOY: ${{github.event_name == 'push' && !contains(join(github.event.commits.*.message),'#skip')}}
 
 jobs:
   simple_deployment_pipeline:
