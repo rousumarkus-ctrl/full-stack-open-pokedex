@@ -10,4 +10,10 @@ describe('Pokedex', () => {
       )
     ).toBeVisible()
   })
+  test('ivysaur has chlorophyll', async ({ page }) => {
+    await page.goto('')
+    await page.getByText('ivysaur').click()
+    await expect(page.getByText('ivysaur')).toBeVisible()
+    await expect(page.getByText('chlorophyll')).toBeVisible()
+  })
 })
