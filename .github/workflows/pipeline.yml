@@ -47,12 +47,12 @@ jobs:
         run: npm run test
       - name: Job successful
         uses: sarisia/actions-status-discord@v1.15.4
-        if: ${{ success() && env.DEPLOY == 'true' }}
+        if: ${{ success() && env.DEPLOY != 'true' }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Job failed
         uses: sarisia/actions-status-discord@v1.15.4
-        if: ${{ failure() && env.DEPLOY == 'true' }}
+        if: ${{ failure() && env.DEPLOY != 'true' }}
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Check deployment
